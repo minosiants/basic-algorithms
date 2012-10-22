@@ -45,6 +45,7 @@ object Sorting {
       result.toArray
     }
     
+    
     if(a.length <=1){
       a
     }else{
@@ -54,7 +55,50 @@ object Sorting {
       merge(left,right);
     }
   }
+  
+ /**
+  * http://en.wikipedia.org/wiki/Quicksort 
+  */
+  def quickSort(a:Array[Int]):Array[Int]={
+    
+    def qsort(array:Array[Int],low:Int,hight:Int):Array[Int]={
+      var pivot=array((hight+low)/2)
+      var i=low
+      var j=hight
+      while(i<=j){
+    	 while(array(i)<pivot) i+=1
+    	 while(array(j)>pivot) j-=1
+    	 if(i<=j){
+    	   exchange(array,i,j)
+    	   i+=1
+    	   j-=1
+    	 } 
+    	 if(low<j) qsort(array,low,j)
+    	 if(i<hight) qsort(array,i,hight)
+    	 
+      }
+      array
+    }
+    def exchange(array:Array[Int],i:Int,j:Int){
+      val t=array(i)
+      array(i)=array(j)
+      array(j)=t
+    }
+    
+    if(a.length==0){
+    	a
+    }else{
+    	qsort(a,0,a.length-1)
+    }
+              
+  }
+  
   def main(args: Array[String]) {
 	  countingSort(Array(35,81,98,14,47),98).map{el=>print(el+",")}
  }
+  
+  
+  
 }
+
+
