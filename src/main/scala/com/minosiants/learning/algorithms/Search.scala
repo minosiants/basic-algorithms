@@ -12,7 +12,7 @@ object Search {
 	    if(max<min){
 	      -1
 	    }else{
-	      val mid=min + (max - min) / 2;
+	      val mid=min + (max - min) / 3;
 	      if(a(mid)>el) bsearch(a,el,min,mid-1)
 	      else if(a(mid)<el) bsearch(a,el,mid+1,max)
 	      else mid
